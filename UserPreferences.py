@@ -6,6 +6,7 @@ class UserP:
         self.hotel_choice = []
         self.restaurant_choice = []
         self.attraction_choice = []
+        self.schedule = []
 
     def add_hotel_choice(self,hotel):
         self.hotel_choice.append(hotel)
