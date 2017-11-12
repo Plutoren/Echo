@@ -99,6 +99,7 @@ def recommend_attraction(data_attraction):
 
 	print("\n\n\n")
 	attractionsDictionary = {}
+	attractionsIDs = {}
 	for x in range(0, int(data_attraction["paging"]["results"])):
 		if "ranking_data" in data_attraction["data"][x]:
 			if data_attraction["data"][x]["ranking_data"] != None:
@@ -106,6 +107,7 @@ def recommend_attraction(data_attraction):
 					if data_attraction["data"][x]["ranking_data"]["ranking"] != None:
 						ranking = int(data_attraction["data"][x]["ranking_data"]["ranking"])
 						attractionsDictionary[ranking] = data_attraction["data"][x]["name"]
+						attractionsIDs[ranking] = x+1
 						
 	
 	
@@ -113,7 +115,7 @@ def recommend_attraction(data_attraction):
 	for keys in sorted(attractionsDictionary.keys()):
 		if counter == 21:
 			break
-		print ("Attraction {}. Rated #{}. {}".format(counter, keys, attractionsDictionary[keys]) )
+		print ("Attraction ID: {0:<2}\tRated: #{1:<4}\tName: {2:<50}".format(attractionsIDs[keys], keys, attractionsDictionary[keys]) )		
 		counter += 1
 		
 	
