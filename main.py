@@ -2,35 +2,58 @@ from web_get import *
 from UserPreferences import *
 from recommend_algorithm import *
 
+
 from pprint import pprint
 
 if __name__ == "__main__":
+	location = input("Where are you going? ")
+	print("Getting TripAdvisor data for {}.".format(location))
+	data_hotel = web_get_hotel(location)
+	data_restaurant = web_get_restaurant(location)
+	data_attraction = web_get_attraction(location)
+	print("Done.")
 
-# example of using multi_get
-    '''
-        ids = ["89575","233835","192416"]
-        data = multi_get.multi_get(ids)
-        print(data.text)
-    '''
+	start_date = input("Please enter your start date mm dd yyyy: ")
+	end_date = input("Please enter your end date mm dd yyyy: ")
 
-    location = input("Where are you going? ")
-    start_date = input("Enter the data you are available from (mm/dd/yyyy): ")
-    end_date = input("Enter the data you are available until (mm/dd/yyyy): ")
 
-    data_hotel = web_get_hotel(location)
-    data_restaurant = web_get_restaurant(location)
-    data_attraction = web_get_attraction(location)
+	
+	user = UserP([int(i) for i in start_date.split()], [int(i) for i in end_date.split()], location)
 
-    user = UserP(start_date, end_date, location)
-
-    # add wanted hotel
-    hotel_choice = recommend_hotel(data_hotel)
-    user.add_hotel_choice(hotel_choice)
-
-    # add wanted restaurant
-    restaurant_choice = recommend_restaurant(data_restaurant)
-    user.add_restaurant_choice(restaurant_choice)
-
-    # add wanted attraction
-    attraction_choice = recommend_attraction(data_attraction)
-    user.add_attraction_choice(attraction_choice)
+	
+	choice = 1
+	while choice != 4:
+		print("1. Choose Hotel")
+		print("2. Add a Meal to your Itinerary")
+		print("3. Add an Event to your Itinerary")
+		print("4. Print Itinerary")
+		choice = int(input("Select an option: "))
+			
+		if choice == 1:
+			# add wanted hotel
+			hotel_choice = recommend_hotel(data_hotel)
+			user.add_hotel_choice(hotel_choice)
+		elif choice == 2:
+			# add wanted restaurant
+			day = input("What day of your trip are you adding a meal to? ")
+			restaurant_choice = recommend_restaurant(data_restaurant)
+			user.add_restaurant_choice(restaurant_choice, day)
+		elif choice == 3:
+			# add wanted attraction
+			day = input("What day of your trip are you adding an event to? ")
+			attraction_choice = recommend_attraction(data_attraction)
+			user.add_attraction_choice(attraction_choice, day)
+			
+			
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	

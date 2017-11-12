@@ -8,7 +8,8 @@ def web_get_hotel(address):
     latitude = location.latitude
     longitude = location.longitude
 
-    request_url = "http://api.tripadvisor.com/api/partner/2.0/map/{},{}/hotels?limit=10&offset=0%22&key=33b67ced-8002-4c51-a43b-ab2faa5e843e".format(latitude, longitude)
+    request_url = "http://api.tripadvisor.com/api/partner/2.0/map/{},{}/hotels?limit=20&offset=0%22&key=33b67ced-8002-4c51-a43b-ab2faa5e843e".format(latitude, longitude)
+   # print (request_url)
     response = requests.get(request_url)
 
     data = json.loads(response.text)
