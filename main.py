@@ -22,7 +22,7 @@ if __name__ == "__main__":
 
 	
 	choice = 1
-	while choice != 4:
+	while choice != 5:
 		print("1. Choose Hotel")
 		print("2. Add a Meal to your Itinerary")
 		print("3. Add an Event to your Itinerary")
@@ -43,6 +43,8 @@ if __name__ == "__main__":
 			day = input("What day of your trip are you adding an event to? ")
 			attraction_choice = recommend_attraction(data_attraction)
 			user.add_attraction_choice(attraction_choice, day)
+		elif choice == 4:
+			user.print_itinerary()
 			
 			
 	
